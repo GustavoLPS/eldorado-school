@@ -23,7 +23,10 @@ export class Student extends Model<Student> {
     phoneNumber: string
 
     @ForeignKey(() => User)
-    @Column
+    @Column({
+        type: DataType.BIGINT,
+        allowNull: false
+    })
     userId: number
 
     @BelongsTo(() => User)

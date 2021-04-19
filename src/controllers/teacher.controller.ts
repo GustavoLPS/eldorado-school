@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { Teacher } from "src/Models/teacher.model";
-import { TeacherService } from './../Services/teacher.service';
+import { Teacher } from "src/models/teacher.model";
+import { TeacherService } from '../services/teacher.service';
 
 @Controller('teachers')
 export class TeacherController {

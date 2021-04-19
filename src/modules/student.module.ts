@@ -1,5 +1,5 @@
-import { studentsProviders } from './../Providers/student.provider';
-import { StudentService } from './../Services/student.service';
+import { studentsProviders } from '../providers/student.provider';
+import { StudentService } from '../services/student.service';
 import { Module } from '@nestjs/common';
 
 @Module({

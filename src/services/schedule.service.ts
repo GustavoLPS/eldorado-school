@@ -1,6 +1,6 @@
 import { Injectable, Inject } from "@nestjs/common"
-import { Schedule } from 'src/Models/schedule.model'
-import { SCHEDULE_REPOSITORY } from './../Constants/index'
+import { Schedule } from 'src/models/schedule.model'
+import { SCHEDULE_REPOSITORY } from '../constants/index'
 
 @Injectable()
 export class ScheduleService {
