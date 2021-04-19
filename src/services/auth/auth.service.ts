@@ -1,6 +1,5 @@
 import { User } from './../../models/user.model';
 import { Student } from '../../models/student.model';
-import { StudentService } from '../student.service';
 import { UserService } from './../user.service';
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
@@ -10,12 +9,12 @@ import { JwtService } from '@nestjs/jwt';
 export class AuthService {
     constructor(
         private readonly userService: UserService,
-        private readonly jwtService: JwtService,
-        private readonly studentService: StudentService
+        private readonly jwtService: JwtService
     ) {}
 
     async validateUser(username: string, pass: string) {
         // find if user exist with this email
+        console.log(username)
         const user = await this.userService.findOneByLogin(username);
         if (!user) {
             return null;
@@ -33,38 +32,37 @@ export class AuthService {
     }
 
     public async login(user) {
-        const token = await this.generateToken(user);
-        return { user, token };
+        const userLongin = await this.validateUser(user.login, user.password);
+        const token = await this.generateToken(userLongin);
+        return { userLongin, token };
     }
 
-    public async create(user) {
+    public async create(user: any) {
         // hash the password
-        console.log(user)
         const pass = await this.hashPassword(user.password);
 
-        const userNew = new User()
-        userNew.setAttributes('login', user.email)
-        userNew.setAttributes('password', pass)
+        const userNew: User = User.build()
+        userNew.setDataValue("login", user.email)
+        userNew.setDataValue("password", pass)
+        await userNew.save()
 
         // create the user
-        const newUser = await this.userService.store(userNew);
-        console.log(newUser)
+        // const newUser = await this.userService.store(userNew);
 
         // tslint:disable-next-line: no-string-liuser.nameteral
-        const { password, ...result } = newUser['dataValues'];
+        const { password, ...result } = userNew['dataValues'];
 
         // generate token
         const token = await this.generateToken(result);
-        const student = new Student()
-        student.setAttributes('name', user.name)
-        student.setAttributes('email', user.name)
-        student.setAttributes('phoneNumber', user.name)
-        student.setAttributes('userId', newUser.id)
-
-        const newStudent: Student =  await this.studentService.store(student)
+        const student = Student.build()
+        student.setDataValue('name', user.name)
+        student.setDataValue('email', user.email)
+        student.setDataValue('phoneNumber', user.phoneNumber)
+        student.setDataValue('userId', userNew.id)
+        await student.save()
 
         // return the user and the token
-        return { user: result, token };
+        return { user: result, student: student, token };
     }
 
     private async generateToken(user) {

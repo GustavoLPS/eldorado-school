@@ -22,6 +22,7 @@ export class UserService {
     }
 
     async store(user: User): Promise<User> {
+        console.log(user)
         return await this.userRepository.create(user)
     }
 
