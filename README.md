@@ -32,6 +32,10 @@
 $ npm install
 ```
 
+## Install Postgres DB
+
+## Create DB named "eldorado-school"
+
 ## Running the app
 
 ```bash
