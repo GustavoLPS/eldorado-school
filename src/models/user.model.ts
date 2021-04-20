@@ -18,7 +18,7 @@ export class User extends Model<User> {
 
     @Column({
         type: DataType.STRING(255),
-        allowNull: false
+        allowNull: true
     })
     token: string
 

@@ -1,6 +1,6 @@
-import { teachersProviders } from './../Providers/teacher.provider';
+import { teachersProviders } from '../providers/teacher.provider';
 import { Module } from '@nestjs/common';
-import { TeacherService } from 'src/Services/teacher.service';
+import { TeacherService } from 'src/services/teacher.service';
 
 @Module({
     providers: [TeacherService, ...teachersProviders],

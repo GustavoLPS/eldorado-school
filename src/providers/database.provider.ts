@@ -1,11 +1,11 @@
-import { Teacher } from './../Models/teacher.model';
-import { User } from './../Models/user.model';
+import { Teacher } from '../models/teacher.model';
+import { User } from '../models/user.model';
 
 import { Sequelize } from 'sequelize-typescript';
-import { Student } from 'src/Models/student.model';
-import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../Constants';
-import { databaseConfig } from './../Config/database.config';
-import { Schedule } from 'src/Models/schedule.model';
+import { Student } from 'src/models/student.model';
+import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../constants';
+import { databaseConfig } from '../config/database.config';
+import { Schedule } from 'src/models/schedule.model';
 
 export const databaseProviders = [{
     provide: SEQUELIZE,

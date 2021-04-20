@@ -1,4 +1,4 @@
-import { Schedule } from 'src/Models/schedule.model';
+import { Schedule } from 'src/models/schedule.model';
 import { User } from './user.model';
 import { Table, Model, Column, DataType, HasOne, ForeignKey, BelongsTo } from 'sequelize-typescript';
 @Table

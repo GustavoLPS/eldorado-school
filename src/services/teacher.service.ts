@@ -1,6 +1,6 @@
 import { Injectable, Inject } from "@nestjs/common"
-import { Teacher } from './../Models/teacher.model'
-import { TEACHER_REPOSITORY } from './../Constants/index'
+import { Teacher } from '../models/teacher.model'
+import { TEACHER_REPOSITORY } from '../constants/index'
 
 @Injectable()
 export class TeacherService {
